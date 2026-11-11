@@ -29,7 +29,7 @@
             <path d="M118 75l18 15 12-7m-65 64 20-8 12 11m-13 53 20-9 13 15m127-134-18 15-12-7m65 64-20-8-12 11m13 53-20-9-13 15"/>
           </g>
           <g fill="#b9efff"><circle cx="104" cy="99" r="3"/><circle cx="139" cy="90" r="3"/><circle cx="91" cy="147" r="3"/><circle cx="128" cy="177" r="3"/><circle cx="112" cy="217" r="3"/><circle cx="256" cy="99" r="3"/><circle cx="221" cy="90" r="3"/><circle cx="269" cy="147" r="3"/><circle cx="232" cy="177" r="3"/><circle cx="248" cy="217" r="3"/></g>
-          <text x="180" y="286" text-anchor="middle" fill="#bdeaff" font-size="17" font-weight="700" letter-spacing="5">NOVA</text>
+          <text id="brain-agent-name" x="180" y="286" text-anchor="middle" fill="#bdeaff" font-size="17" font-weight="700" letter-spacing="5">NOVA</text>
         </svg>
         <p class="brain-caption">NEURAL INTERFACE <span>·</span> CONNECTION PENDING</p>
       </div>
@@ -89,6 +89,7 @@ document.querySelectorAll("[data-agent]").forEach(button => button.addEventListe
   document.querySelectorAll("[data-agent]").forEach(item => { item.classList.remove("selected"); item.setAttribute("aria-pressed", "false"); });
   button.classList.add("selected"); button.setAttribute("aria-pressed", "true");
   const agent = button.dataset.agent;
+  document.getElementById("brain-agent-name").textContent = agent;
   document.getElementById("active-agent-title").textContent = agent + " CONVERSATION";
   document.getElementById("conversation-empty").innerHTML = "<strong>Your conversation with " + agent + " will appear here.</strong><p>This interface is being prepared. Messages cannot be sent until an AI model is connected.</p>";
 }));
