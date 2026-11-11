@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NerveGear Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">NERVEGEAR <span>LAB</span></a>
+    <a class="settings-link" href="/page/command">AI Control Panel</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="side-label">WORKSPACES</div>
+      {% for item in pages %}
+        <a class="nav-item {% if active == item[0] %}active{% endif %}" href="/page/{{ item[0] }}">
+          <span class="nav-number">{{ "%02d"|format(loop.index) }}</span>{{ item[1] }}
+        </a>
+      {% endfor %}
+    </aside>
+    <main class="main">{% block content %}{% endblock %}</main>
+  </div>
+  <footer>Local development foundation · Scientific outputs must be validated before being treated as evidence.</footer>
+</body>
+</html>

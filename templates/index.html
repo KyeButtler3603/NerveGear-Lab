@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% set active = "" %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">SCIENTIFIC RESEARCH ENVIRONMENT</div>
+  <h1>Explore. Model. <span>Understand.</span></h1>
+  <p>NerveGear Lab brings scientific exploration, virtual experiments, and AI-assisted learning into one expandable workspace.</p>
+  <a class="primary" href="/page/command">Open AI Command Center</a>
+</section>
+<h2>Main workspaces</h2>
+<div class="cards">
+{% for item in pages %}
+  <a class="card" href="/page/{{ item[0] }}">
+    <div class="card-number">{{ "%02d"|format(loop.index) }}</div>
+    <h3>{{ item[1] }}</h3>
+    <p>{{ item[2] }}</p>
+    <span class="card-link">Open workspace →</span>
+  </a>
+{% endfor %}
+</div>
+{% endblock %}

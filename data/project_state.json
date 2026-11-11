@@ -1,0 +1,39 @@
+{
+  "project": "NerveGear Lab",
+  "milestone": 2,
+  "blueprint": "BLUEPRINT.md",
+  "architecture": "MILESTONE_1.md",
+  "agents": {
+    "cloud_development_ai": {
+      "purpose": "Build and maintain the website",
+      "status": "not_connected",
+      "location": "planned_cloud_runtime",
+      "controlled_from": "Page 10 \u2014 AI Command Center"
+    },
+    "research_ai": {
+      "purpose": "Scientific research, models, and supported virtual simulations",
+      "status": "not_connected",
+      "location": "inside_website_when_implemented"
+    }
+  },
+  "approval_policy": {
+    "small_reversible_changes": "allowed_with_activity_log_and_undo_checkpoint",
+    "new_pages": "owner_approval_required",
+    "drastic_page_changes": "owner_approval_required",
+    "major_feature_removal": "owner_approval_required",
+    "spending_publishing_external_accounts_physical_experiments": "explicit_approval_required"
+  },
+  "cloud_deployment": "not_deployed",
+  "model_provider": "not_selected",
+  "last_updated": "2026-11-10",
+  "local_command_center": {
+    "status": "implemented_scaffold",
+    "features": [
+      "persistent local task queue",
+      "task submission API",
+      "project connection status endpoint",
+      "clear not-deployed indicators"
+    ],
+    "execution": "disabled_until_cloud_worker_and_model_are_configured"
+  }
+}
