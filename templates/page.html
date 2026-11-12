@@ -4,11 +4,53 @@
 <div class="eyebrow">WORKSPACE / {{ page[0]|upper }}</div>
 <h1>{{ page[1] }}</h1>
 <p class="lead">{{ page[2] }}</p>
-<div class="notice">
-  <strong>Development scaffold</strong>
-  <p>This workspace is mapped in the project structure. Its specialized 3D viewers, scientific datasets, and simulation engines have not been implemented yet. We'll add and test them as separate modules.</p>
-</div>
 {% if page[0] == "command" %}
+  <section class="command-center" aria-label="NerveGear AI Command Center">
+    <div class="command-heading">
+      <div><span class="eyebrow">SYSTEM INTERFACE</span><h2>AI Command Center</h2><p class="muted">Select an agent to view its workspace. Connections are not configured yet.</p></div>
+      <span class="status-pill">ALL AGENTS DISCONNECTED</span>
+    </div>
+    <div class="command-layout">
+      <nav class="agent-selector" aria-label="Select AI agent">
+        <span class="mini-label">AI SYSTEMS</span>
+        <button class="agent-button selected" type="button" data-agent="NOVA" aria-pressed="true"><strong>NOVA</strong><small>Primary assistant</small></button>
+        <button class="agent-button" type="button" data-agent="ATLAS" aria-pressed="false"><strong>ATLAS</strong><small>Development AI</small></button>
+        <button class="agent-button" type="button" data-agent="ORION" aria-pressed="false"><strong>ORION</strong><small>Research AI</small></button>
+        <button class="agent-button" type="button" data-agent="NEXUS" aria-pressed="false"><strong>NEXUS</strong><small>Communication</small></button>
+      </nav>
+      <div class="brain-stage">
+        <div class="brain-glow"></div>
+        <svg class="brain-art" viewBox="0 0 360 300" role="img" aria-label="Stylized holographic brain labeled NOVA">
+          <defs><linearGradient id="brainStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9beaff"/><stop offset=".55" stop-color="#4da9ff"/><stop offset="1" stop-color="#9b8cff"/></linearGradient><filter id="brainGlow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <g fill="none" stroke="url(#brainStroke)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#brainGlow)">
+            <path d="M177 52c-20-28-60-25-72 3-27-5-48 18-40 44-25 16-23 49-3 65-12 27 4 52 29 55 5 26 34 37 55 21 12 16 29 19 34 17V52z"/>
+            <path d="M183 52c20-28 60-25 72 3 27-5 48 18 40 44 25 16 23 49 3 65 12 27-4 52-29 55-5 26-34 37-55 21-12 16-29 19-34 17V52z"/>
+            <path d="M177 58v198M82 104c21-5 34 9 31 27-3 13-16 17-27 14m-12 20c20-8 39 4 38 22-1 12-10 18-22 20m-1-126c18 3 24 17 18 31m30-55c-7 17 1 31 17 36m-7 33c-18-3-27 10-24 26m-9 27c17-9 31-1 35 14m-21-91c16 4 22 18 16 31m118-57c-18 3-24 17-18 31m-8 27c18-3 27 10 24 26m9 27c-17-9-31-1-35 14m21-91c-16 4-22 18-16 31m30-55c7 17-1 31-17 36m42 11c-21-5-34 9-31 27 3 13 16 17 27 14m12 20c-20-8-39 4-38 22 1 12 10 18 22 20"/>
+            <path d="M118 75l18 15 12-7m-65 64 20-8 12 11m-13 53 20-9 13 15m127-134-18 15-12-7m65 64-20-8-12 11m13 53-20-9-13 15"/>
+          </g>
+          <g fill="#b9efff"><circle cx="104" cy="99" r="3"/><circle cx="139" cy="90" r="3"/><circle cx="91" cy="147" r="3"/><circle cx="128" cy="177" r="3"/><circle cx="112" cy="217" r="3"/><circle cx="256" cy="99" r="3"/><circle cx="221" cy="90" r="3"/><circle cx="269" cy="147" r="3"/><circle cx="232" cy="177" r="3"/><circle cx="248" cy="217" r="3"/></g>
+          <text id="brain-agent-name" x="180" y="286" text-anchor="middle" fill="#bdeaff" font-size="17" font-weight="700" letter-spacing="5">NOVA</text>
+        </svg>
+        <p class="brain-caption">NEURAL INTERFACE <span>·</span> CONNECTION PENDING</p>
+      </div>
+      <aside class="agent-status">
+        <span class="mini-label">LIVE AGENT STATUS</span>
+        {% for agent, role in [("NOVA","Primary assistant"),("ATLAS","Development"),("ORION","Research"),("NEXUS","Communications")] %}
+        <div class="agent-status-row"><span><i class="status-dot offline"></i><strong>{{ agent }}</strong><small>{{ role }}</small></span><em>Disconnected</em></div>
+        {% endfor %}
+        <p class="muted status-note">No activity is being simulated. Live tasks and progress will appear here after each agent is connected.</p>
+      </aside>
+    </div>
+    <section class="conversation-panel">
+      <div class="conversation-title"><div><span class="mini-label">SECURE SESSION</span><h3 id="active-agent-title">NOVA CONVERSATION</h3></div><span class="status-pill">NOT CONNECTED</span></div>
+      <div class="conversation-empty" id="conversation-empty"><strong>Your conversation with NOVA will appear here.</strong><p>This interface is being prepared. Messages cannot be sent until an AI model is connected.</p></div>
+      <form id="chat-form" class="chat-composer">
+        <label class="visually-hidden" for="chat-message">Message the selected AI</label>
+        <textarea id="chat-message" rows="2" maxlength="2000" placeholder="AI connection required before you can send a message." disabled></textarea>
+        <button class="primary" type="submit" disabled>Send message</button>
+      </form>
+    </section>
+  </section>
   <section class="panel">
     <h2>AI operating mode</h2>
     <p>Choose how much initiative the assistant may take. This setting does not grant permission for external actions.</p>
@@ -20,83 +62,60 @@
     <h2>Permissions</h2>
     <div id="permissions">
       {% for key, value in settings.permissions.items() %}
-      <label class="toggle-row">
-        <span>{{ key.replace("_", " ").title() }}</span>
-        <input type="checkbox" data-permission="{{ key }}" {% if value %}checked{% endif %}>
-      </label>
+      <label class="toggle-row"><span>{{ key.replace("_", " ").title() }}</span><input type="checkbox" data-permission="{{ key }}" {% if value %}checked{% endif %}></label>
       {% endfor %}
     </div>
     <button class="primary" id="save-settings">Save settings</button>
     <p id="save-status" class="muted" aria-live="polite"></p>
   </section>
   <section class="panel">
-    <div class="section-heading"><div><h2>Development task queue</h2><p class="muted">Write down what you want the cloud developer to build next.</p></div><span class="status-pill">Local queue</span></div>
-    <label for="task-title">Task title</label>
-    <input id="task-title" type="text" maxlength="120" placeholder="Example: Build the anatomy search interface">
-    <label for="task-details">Details (optional)</label>
-    <textarea id="task-details" rows="3" maxlength="2000" placeholder="Describe what it should do and how you want it to look."></textarea>
-    <button class="primary" id="queue-task">Save development task</button>
-    <p id="task-status" class="muted" aria-live="polite"></p>
-    <h3>Queued tasks</h3>
-    <div id="task-list">
-      {% for task in tasks %}
-      <article class="activity-item"><strong>{{ task.title }}</strong><span class="status-pill">{{ task.status.replace('_', ' ') }}</span><p>{{ task.details }}</p><small>{{ task.note }}</small></article>
-      {% else %}<p class="muted">No tasks queued yet.</p>{% endfor %}
-    </div>
+    <div class="section-heading"><div><h2>Development task queue</h2><p class="muted">Save ideas for ATLAS. Tasks remain local until a development AI is connected.</p></div><span class="status-pill">LOCAL QUEUE</span></div>
+    <label for="task-title">Task title</label><input id="task-title" type="text" maxlength="120" placeholder="Example: Build the anatomy search interface">
+    <label for="task-details">Details (optional)</label><textarea id="task-details" rows="3" maxlength="2000" placeholder="Describe what it should do and how you want it to look."></textarea>
+    <button class="primary" id="queue-task">Save development task</button><p id="task-status" class="muted" aria-live="polite"></p>
+    <h3>Queued tasks</h3><div id="task-list">{% for task in tasks %}<article class="activity-item"><strong>{{ task.title }}</strong><span class="status-pill">{{ task.status.replace("_", " ") }}</span><p>{{ task.details }}</p><small>{{ task.note }}</small></article>{% else %}<p class="muted">No tasks queued yet.</p>{% endfor %}</div>
   </section>
   <section class="panel">
-    <h2>Connection status</h2>
-    <div class="status-grid">
-      <div><span class="muted">Cloud deployment</span><strong>Not deployed</strong></div>
-      <div><span class="muted">Development AI</span><strong>Not connected</strong></div>
-      <div><span class="muted">Research AI</span><strong>Not connected</strong></div>
-      <div><span class="muted">Budget</span><strong>$0.00 limit</strong></div>
-    </div>
-    <p class="muted">Tasks saved here are stored on this computer. They are not being executed by an AI until a real cloud worker and model are connected.</p>
+    <h2>System controls and approvals</h2>
+    <div class="status-grid"><div><span class="muted">Cloud development</span><strong>Not connected</strong></div><div><span class="muted">Research services</span><strong>Not connected</strong></div><div><span class="muted">Pending approvals</span><strong>None recorded</strong></div><div><span class="muted">Budget limit</span><strong>$0.00</strong></div></div>
+    <p class="muted">Spending, publishing, external account connections, physical experiments, and major site changes remain subject to your approval. No paid services or automatic billing are enabled.</p>
   </section>
+{% else %}
+  <div class="notice"><strong>Development scaffold</strong><p>This workspace is mapped in the project structure. Its specialized 3D viewers, scientific datasets, and simulation engines have not been implemented yet. We'll add and test them as separate modules.</p></div>
+  <section class="panel"><h2>Planned capabilities</h2><ul><li>Dedicated tools and data models for this scientific area.</li><li>AI explanations with clear evidence and uncertainty labels.</li><li>Saved projects, experiment settings, and reproducible results.</li></ul></section>
 {% endif %}
-<section class="panel">
-  <h2>Planned capabilities</h2>
-  <ul>
-    <li>Dedicated tools and data models for this scientific area.</li>
-    <li>AI explanations with clear evidence and uncertainty labels.</li>
-    <li>Saved projects, experiment settings, and reproducible results.</li>
-  </ul>
-</section>
 <script>
+document.querySelectorAll("[data-agent]").forEach(button => button.addEventListener("click", () => {
+  document.querySelectorAll("[data-agent]").forEach(item => { item.classList.remove("selected"); item.setAttribute("aria-pressed", "false"); });
+  button.classList.add("selected"); button.setAttribute("aria-pressed", "true");
+  const agent = button.dataset.agent;
+  document.getElementById("brain-agent-name").textContent = agent;
+  document.getElementById("active-agent-title").textContent = agent + " CONVERSATION";
+  document.getElementById("conversation-empty").innerHTML = "<strong>Your conversation with " + agent + " will appear here.</strong><p>This interface is being prepared. Messages cannot be sent until an AI model is connected.</p>";
+}));
+document.getElementById("chat-form")?.addEventListener("submit", event => event.preventDefault());
 document.getElementById("save-settings")?.addEventListener("click", async () => {
-  const mode = document.getElementById("mode").value;
-  const permissions = {};
-  document.querySelectorAll("[data-permission]").forEach(el => {
-    permissions[el.dataset.permission] = el.checked;
-  });
-  const response = await fetch("/api/settings", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({mode, permissions})
-  });
-  const data = await response.json();
-  document.getElementById("save-status").textContent =
-    response.ok ? "Settings saved locally." : "Could not save settings.";
+  const mode = document.getElementById("mode").value, permissions = {};
+  document.querySelectorAll("[data-permission]").forEach(el => { permissions[el.dataset.permission] = el.checked; });
+  try {
+    const response = await fetch("/api/settings", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode,permissions})});
+    document.getElementById("save-status").textContent = response.ok ? "Settings saved locally." : "Could not save settings.";
+  } catch { document.getElementById("save-status").textContent = "Could not reach the settings service."; }
 });
-
 document.getElementById("queue-task")?.addEventListener("click", async () => {
-  const title = document.getElementById("task-title").value.trim();
-  const details = document.getElementById("task-details").value.trim();
-  const status = document.getElementById("task-status");
+  const title = document.getElementById("task-title").value.trim(), details = document.getElementById("task-details").value.trim(), status = document.getElementById("task-status");
   if (!title) { status.textContent = "Please enter a task title."; return; }
-  const response = await fetch("/api/tasks", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({title, details})});
-  const task = await response.json();
-  if (!response.ok) { status.textContent = task.error || "Could not save task."; return; }
-  status.textContent = "Task saved locally. It will wait until the development AI is connected.";
-  const item = document.createElement("article");
-  item.className = "activity-item";
-  const heading = document.createElement("strong"); heading.textContent = task.title;
-  const note = document.createElement("p"); note.textContent = task.note;
-  item.append(heading, note);
-  document.getElementById("task-list").prepend(item);
-  document.getElementById("task-title").value = "";
-  document.getElementById("task-details").value = "";
+  try {
+    const response = await fetch("/api/tasks", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title,details})});
+    const task = await response.json();
+    if (!response.ok) { status.textContent = task.error || "Could not save task."; return; }
+    status.textContent = "Task saved locally. It will wait until the development AI is connected.";
+    const item = document.createElement("article"); item.className = "activity-item";
+    const heading = document.createElement("strong"); heading.textContent = task.title;
+    const note = document.createElement("p"); note.textContent = task.note;
+    item.append(heading,note); document.getElementById("task-list").prepend(item);
+    document.getElementById("task-title").value = ""; document.getElementById("task-details").value = "";
+  } catch { status.textContent = "Could not reach the task service."; }
 });
 </script>
 {% endblock %}
